@@ -13,18 +13,53 @@
   <url>http://www.example.com</url>
 
   <properties>
+    <student>RuthJ</student>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>cp510-repository</id>
+      <name>javaintrolib</name>
+      <url>https://faculty.washington.edu/jstraub/repository/</url>
+    </repository>
+  </repositories>
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.5.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.5.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/abbot/abbot -->
+    <dependency>
+      <groupId>abbot</groupId>
+      <artifactId>abbot</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/abbot/costello -->
+    <dependency>
+      <groupId>abbot</groupId>
+      <artifactId>costello</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>edu.uweo.javaintro</groupId>
+      <artifactId>javaintrolib</artifactId>
+      <version>00</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -42,7 +77,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
+          <version>3.8.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -68,6 +103,22 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>3.0.0</version>
+          <configuration>
+            <finalName>${student}-${project.version}</finalName>
+            <formats>
+              <format>tar.gz</format>
+              <format>zip</format>
+            </formats>
+            <descriptorRefs>
+              <descriptorRef>project</descriptorRef>
+            </descriptorRefs>
+            <tarLongFileMode>posix</tarLongFileMode>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
