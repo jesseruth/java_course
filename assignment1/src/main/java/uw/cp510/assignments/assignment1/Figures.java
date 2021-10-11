@@ -40,6 +40,11 @@ public class Figures
             double   area    = circArea( radius );
             System.out.printf( fmt, radius, peri, area );
         }
+
+        double rect = rectPerimeterDiag(5, 2);
+        System.out.println( "rect" );
+        fmt = "\trect: %10.5f";
+        System.out.printf( fmt, rect);
     }
 
     /**
@@ -52,7 +57,7 @@ public class Figures
      */
     public static double rectPerimeter( double side1, double side2 )
     {
-        double  peri = 0; // replace the 0 with the perimeter.
+        double  peri = (2.0 * side1) + (2.0 * side2); // replace the 0 with the perimeter.
         return peri;
     }
 
@@ -66,7 +71,7 @@ public class Figures
      */
     public static double rectArea( double side1, double side2 )
     {
-        double area =  0; // replace the 0 with the area.
+        double area =  side1 * side2; // replace the 0 with the area.
         return area;
     }
 
@@ -82,7 +87,7 @@ public class Figures
      */
     public static double circPerimeter( double radius )
     {
-        double  peri = 0; // replace the 0 with the perimeter.
+        double  peri = 2.0 * Math.PI * radius; // replace the 0 with the perimeter.
         return peri;
     }
 
@@ -95,7 +100,7 @@ public class Figures
      */
     public static double circArea( double radius )
     {
-        double area =  0; // replace the 0 with the area.
+        double area =  Math.PI * radius * radius; // replace the 0 with the area.
         return area;
     }
 
@@ -114,7 +119,18 @@ public class Figures
      */
     public static double rectPerimeterDiag( double diag, double slope )
     {
-        double peri  =  0; // replace the 0 with the perimeter.
+        // a = b * slope
+        // a^2 + b^2 = c^2
+        // b = c /
+        // a = bm
+        if (diag < 0 || slope < 0) {
+            return Double.NaN;
+        }
+
+        double b = diag / Math.sqrt(((slope * slope) + 1));
+        double a = b * slope;
+        System.out.println( "rect, a:" + a + ", b: " + b + "c: " + diag );
+        double peri  =  b + a + diag; // replace the 0 with the perimeter.
         return peri;
     }
 
