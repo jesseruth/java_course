@@ -37,24 +37,24 @@ public class Figures {
             System.out.printf(fmt, radius, peri, area);
         }
 
-        System.out.println("Bonus perimeter");
-        double[][] diagonals = {{5, 1}, {15, 2}, {7, 3}};
-        fmt = "\tdiag: %10.5f, slope = %10.5f, perimeter = %10.5f%n";
-        for (double[] diag : diagonals) {
-            double diagonal = diag[0];
-            double slope = diag[1];
-            double rect = rectPerimeterDiag(diagonal, slope);
-            System.out.printf(fmt, diagonal, slope, rect);
-        }
-
-        System.out.println("Bonus Area");
-        fmt = "\tdiag: %10.5f, slope = %10.5f, area = %10.5f%n";
-        for (double[] diag : diagonals) {
-            double diagonal = diag[0];
-            double slope = diag[1];
-            double rect = rectAreaDiag(diagonal, slope);
-            System.out.printf(fmt, diagonal, slope, rect);
-        }
+//        System.out.println("Bonus perimeter");
+//        double[][] diagonals = {{5, 1}, {15, 2}, {7, 3}};
+//        fmt = "\tdiag: %10.5f, slope = %10.5f, perimeter = %10.5f%n";
+//        for (double[] diag : diagonals) {
+//            double diagonal = diag[0];
+//            double slope = diag[1];
+//            double rect = rectPerimeterDiag(diagonal, slope);
+//            System.out.printf(fmt, diagonal, slope, rect);
+//        }
+//
+//        System.out.println("Bonus Area");
+//        fmt = "\tdiag: %10.5f, slope = %10.5f, area = %10.5f%n";
+//        for (double[] diag : diagonals) {
+//            double diagonal = diag[0];
+//            double slope = diag[1];
+//            double rect = rectAreaDiag(diagonal, slope);
+//            System.out.printf(fmt, diagonal, slope, rect);
+//        }
     }
 
     /**
