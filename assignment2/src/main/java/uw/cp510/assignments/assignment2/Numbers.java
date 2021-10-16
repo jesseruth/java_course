@@ -1,6 +1,7 @@
 package uw.cp510.assignments.assignment2;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 /**
  * This utility class implements some common class methods that perform arithmetic calculations.
@@ -15,6 +16,16 @@ public class Numbers {
      * @return
      */
     public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+
+        for (int i = 2; i <= num / 2; i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -26,7 +37,18 @@ public class Numbers {
      * @return
      */
     public static int lcm(int param1, int param2) {
-        return 1;
+        if (param1 <= 0 || param2 <= 0) {
+            return 0;
+        }
+
+        int start = param1 > param2 ? param1 : param2;
+
+        while (true) {
+            if (start % param1 == 0 && start % param2 == 0) {
+                return start;
+            }
+            start++;
+        }
     }
 
     /**
@@ -37,6 +59,19 @@ public class Numbers {
      * @return
      */
     public static int gcf(int param1, int param2) {
+        if (param1 <= 0 || param2 <= 0) {
+            return 0;
+        }
+
+        int start = param1 < param2 ? param1 : param2;
+
+        while (start > 0) {
+            if (param1 % start == 0 && param2 % start == 0) {
+                return start;
+            }
+            start--;
+        }
+
         return 1;
     }
 
@@ -47,8 +82,11 @@ public class Numbers {
      * @return
      */
     public static double mean(double[] arr) {
-        return 1.0;
-
+        double sum = 0;
+        for (double num : arr) {
+            sum = sum + num;
+        }
+        return sum / arr.length;
     }
 
     /**
@@ -60,7 +98,14 @@ public class Numbers {
      * @return
      */
     public static double median(double[] arr) {
-        return 1.0;
+        int size = arr.length;
+        double[] sorted = Arrays.copyOf(arr, size);
+        Arrays.sort(sorted);
+        if (size % 2 == 1) {
+            return sorted[size / 2];
+        } else {
+            return (sorted[size / 2] + sorted[size / 2 - 1]) / 2;
+        }
     }
 
     /**
@@ -72,7 +117,11 @@ public class Numbers {
      * @return
      */
     public static long factorial(long num) {
-        return 1;
+        if (num == 0) {
+            return 1;
+        }
+
+        return num * factorial(num - 1);
     }
 
     /**
@@ -83,7 +132,9 @@ public class Numbers {
      * @return
      */
     public static BigInteger factorial(BigInteger num) {
-        BigInteger bigInteger = new BigInteger("123456789123456789");
-        return bigInteger;
+        if (num.equals(0)) {
+            return new BigInteger("1");
+        }
+        return num.multiply(factorial(num.subtract(new BigInteger("1"))));
     }
 }
