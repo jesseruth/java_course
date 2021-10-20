@@ -2,6 +2,8 @@ package app;
 
 import uw.cp510.assignments.assignment2.Numbers;
 
+import java.math.BigInteger;
+
 /**
  * A sample driver for the second class assignment.
  *
@@ -27,6 +29,8 @@ public class NumbersDriver {
         median();
         newLine();
         factorial();
+        newLine();
+        factorialBig();
     }
 
     /**
@@ -209,6 +213,31 @@ public class NumbersDriver {
     }
 
     /**
+     * Exercises Numbers.factorial( BigInteger ).
+     *
+     * @see Numbers#factorial(BigInteger)
+     */
+    private static void factorialBig() {
+        // The numbers in the comments are the expected values
+        BigInteger[] nums =
+                {
+                        new BigInteger("-1"),
+                        new BigInteger("0"),
+                        new BigInteger("1"),
+                        new BigInteger("2"),
+                        new BigInteger("3"),
+                        new BigInteger("5"),
+                        new BigInteger("10")
+                };
+        //   3,628,800
+        for (BigInteger num : nums) {
+            BigInteger factorial = Numbers.factorial(num);
+            System.out.printf("BigIntegerFactorial( %2d ): %,d\n", num, factorial);
+        }
+
+    }
+
+    /**
      * Exercises Numbers.factorial( int ).
      *
      * @see #factorial(int)
@@ -219,7 +248,7 @@ public class NumbersDriver {
         int[] nums =
                 {0, 1, 2, 3, 5,
                         //   1    1    2    6    120
-                        10};
+                        10, 21};
         //   3,628,800
         for (int num : nums)
             factorial(num);
@@ -235,7 +264,12 @@ public class NumbersDriver {
      * @see Numbers#factorial(int)
      */
     private static void factorial(int num) {
-        long factorial = Numbers.factorial(num);
-        System.out.printf("factorial( %2d ): %,d\n", num, factorial);
+        long factorial = 0;
+        try {
+            factorial = Numbers.factorial(num);
+            System.out.printf("factorial( %2d ): %,d\n", num, factorial);
+        } catch (Exception e) {
+            System.out.printf("Unable to calculate factorial for %d, greater than 20 \n:(\n", num);
+        }
     }
 }
