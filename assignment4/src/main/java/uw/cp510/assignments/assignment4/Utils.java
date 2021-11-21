@@ -8,6 +8,8 @@ import java.awt.*;
  * @author Jesse Ruth
  */
 public class Utils {
+    private Utils() {}
+
     /**
      * This method uses JOptionPane.showInputDialog to ask the operator to enter an
      * integer between min and max and displays in the dialog must be "Enter an integer
@@ -40,16 +42,15 @@ public class Utils {
                 }
                 i = Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                e.printStackTrace();
+                System.out.println("NumberFormatException: " + input);
             }
 
-            if (i == null || "".equals(input) || (i < min || i > max)) {
+            if (i == null || i < min || i > max) {
                 i = null;
                 String errorMessage = "\"" + input + "\" is not valid";
                 JOptionPane.showMessageDialog(null, errorMessage);
             }
         }
-        System.out.println("Returning: " + i);
         return i;
     }
 
