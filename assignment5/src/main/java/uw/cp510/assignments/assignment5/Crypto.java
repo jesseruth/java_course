@@ -2,9 +2,6 @@ package uw.cp510.assignments.assignment5;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Crypto class contains two methods: encrypt and decrypt, which will
@@ -13,6 +10,8 @@ import java.util.stream.Stream;
  * @author Jesse Ruth
  */
 public class Crypto {
+    private Crypto(){};
+
     /**
      * Encrypts a string by padding the end of the input string with the null character,
      * '\u0000'. The number of characters to pad depends on the length of the string; after
@@ -23,40 +22,35 @@ public class Crypto {
      * @return
      */
     public static String encrypt(String str) {
-//        System.out.println("Encrypting: " + str + "\nOriginal Length: " + str.length());
-        StringBuilder newString = new StringBuilder();
+        // Pad the string
+        StringBuilder padBuilder = new StringBuilder();
         String padChar = "\u0000";
-        newString.append(str);
+        padBuilder.append(str);
+
         int modulo3 = str.length() % 3;
         if (str.length() == 0 || modulo3 == 0) {
-            newString.append(padChar);
-            newString.append(padChar);
-            newString.append(padChar);
+            padBuilder.append(padChar);
+            padBuilder.append(padChar);
+            padBuilder.append(padChar);
         } else if (modulo3 == 1) {
-            newString.append(padChar);
-            newString.append(padChar);
-        } else if (modulo3 == 2) {
-            newString.append(padChar);
+            padBuilder.append(padChar);
+            padBuilder.append(padChar);
+        } else {
+            padBuilder.append(padChar);
         }
-        String finalString = newString.toString();
-//        System.out.println("New Word: \"" + finalString + "\"");
+        String paddedString = padBuilder.toString();
 
+        // Break into blocks
         ArrayList<char[]> wordBlocks = new ArrayList<char[]>();
 
-        char[] characters = finalString.toCharArray();
-        int counter = 1;
-
-        for (char ccc : characters) {
-//            System.out.println("counter " + counter);
-//            System.out.println("no cast:" + ccc);
-//            System.out.printf("cast %3d \n", (int) ccc);
-            if (counter % 3 == 0 && counter != 0) {
-                char[] newA = Arrays.copyOfRange(characters, counter - 3, counter);
-                wordBlocks.add(newA);
+        char[] characters = paddedString.toCharArray();
+        for (int i = 1; i <= characters.length; i++) {
+            if (i % 3 == 0) {
+                wordBlocks.add(Arrays.copyOfRange(characters, i - 3, i));
             }
-            counter++;
         }
 
+        // rotate
         ArrayList<char[]> rotated = new ArrayList<char[]>();
 
         if (wordBlocks.size() > 1) {
@@ -71,15 +65,16 @@ public class Crypto {
             rotated.add(wordBlocks.get(0));
         }
 
-        String[] incremented = new String[finalString.length()];
+        // Increment
+        String[] incremented = new String[paddedString.length()];
         int index = 0;
-        for (char[] wordB: rotated) {
-           for (char c : wordB) {
-               char temp = (char)(c + index);
-               incremented[index] = String.valueOf(temp);
-               index++;
-           }
-       }
+        for (char[] wordB : rotated) {
+            for (char c : wordB) {
+                char temp = (char) (c + index);
+                incremented[index] = String.valueOf(temp);
+                index++;
+            }
+        }
 
         return String.join("", incremented);
     }
@@ -89,53 +84,52 @@ public class Crypto {
      * @return The decrypted plain text value.
      */
     public static String decrypt(String str) {
-        if (str.length() % 3 != 0) throw new Error("Not properly encoded");
-
+        // Decrement
         char[] chars = str.toCharArray();
         String[] characters = new String[chars.length];
         for (int i = 0; i < chars.length; i++) {
             if (i == 0) {
-                characters[i] = String.valueOf(chars[i]);
+                char value = chars[i];
+                characters[i] = String.valueOf(value);
             } else {
-                characters[i] = String.valueOf((char) (chars[i] - 1));
+                char value = (char) (chars[i] - i);
+                characters[i] = String.valueOf(value);
             }
         }
 
+        // break into word blocks
         ArrayList<String[]> wordBlocks = new ArrayList<String[]>();
 
-        int counter = 1;
-        for (String ccc : characters) {
-            if (counter % 3 == 0 && counter != 0) {
-                String[] newA = Arrays.copyOfRange(characters, counter - 3, counter);
-                wordBlocks.add(newA);
+        for (int i = 1; i <= characters.length; i++) {
+            if (i % 3 == 0) {
+                wordBlocks.add(Arrays.copyOfRange(characters, i - 3, i));
             }
-            counter++;
         }
 
-        System.out.println(str.length());
-        System.out.println(wordBlocks.size());
+        // un rotate
         ArrayList<String[]> rotated = new ArrayList<String[]>();
         if (wordBlocks.size() > 1) {
-            for (int i = wordBlocks.size(); i >= 0; i--) {
+            for (int i = wordBlocks.size() - 1; i >= 0; i--) {
                 if (i == 0) {
                     rotated.add(wordBlocks.get(0));
                 } else {
-                    rotated.add(wordBlocks.get(i - 1));
+                    rotated.add(wordBlocks.get(wordBlocks.size() - i));
                 }
             }
         } else {
             rotated.add(wordBlocks.get(0));
         }
 
+        // Flatten
         String[] flattened = new String[rotated.size() * 3];
         int index = 0;
-        for (String[] wordB: rotated) {
+        for (String[] wordB : rotated) {
             for (String c : wordB) {
                 flattened[index] = c;
                 index++;
             }
         }
 
-        return String.join("", flattened);
+        return String.join("", flattened).replace("\0", "");
     }
 }

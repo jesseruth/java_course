@@ -2,7 +2,6 @@ package uw.cp510.assignments.assignment5;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CryptoTest {
@@ -15,6 +14,7 @@ public class CryptoTest {
         System.out.println("\n**************************************");
         System.out.println("Testing encrypting strings");
         String[] stringsToEncrypt = new String[]{
+                "Alligators",
                 "Alligator",
                 "Squirrel",
                 "Wallaby",
@@ -23,26 +23,15 @@ public class CryptoTest {
                 "Lynx",
                 "cat",
                 "42",
-                "X"
-        };
-
-        String[] expectedValues = new String[]{
-                "Alligator",
-                "Squirrel",
-                "Wallaby",
-                "Parrot",
-                "Moose",
-                "Lynx",
-                "cat",
-                "42",
-                "X"
+                "X",
+                ""
         };
 
         System.out.println("**************************************");
-        for (int i = 0; i <= expectedValues.length - 1; i++) {
-            String actual = Crypto.encrypt(stringsToEncrypt[i]);
-            String expected = expectedValues[i];
-            assertFalse(actual.equals(expected));
+        for (int i = 0; i <= stringsToEncrypt.length - 1; i++) {
+            String encrypted = Crypto.encrypt(stringsToEncrypt[i]);
+            String decrypted = Crypto.decrypt(encrypted);
+            assertTrue(decrypted.equals(stringsToEncrypt[i]));
         }
     }
 }
