@@ -1,9 +1,8 @@
 package uw.cp510.lectures.lecture6;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class App {
 
@@ -17,7 +16,7 @@ public class App {
         }
     }
 
-    private static void printList(List<String> list, String start) {
+    private static void printList(Collection<String> list, String start) {
         for (String item: list) {
             if (item.toLowerCase().startsWith(start.toLowerCase())) {
                 System.out.println(item);
@@ -25,30 +24,75 @@ public class App {
         }
     }
 
+    private static void addItems(Collection collection) {
+        collection.add("Germany");
+        collection.add("France");
+        collection.add("Japan");
+        collection.add("Australia");
+        collection.add("Austria");
+        collection.add("Denmark");
+        collection.add("Egypt");
+        collection.add("Poland");
+    }
+
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("Germany");
-        list.add("France");
-        list.add("Japan");
-        list.add("Australia");
-        list.add("Austria");
-        list.add("Denmark");
-        list.add("Egypt");
-        list.add("Poland");
+        Collection<String> list = new ArrayList<>();
+        addItems(list);
 
         List<String> list2 = new LinkedList<>();
-        list2.add("Germany");
-        list2.add("France");
-        list2.add("Japan");
-        list2.add("Australia");
-        list2.add("Austria");
-        list2.add("Denmark");
-        list2.add("Egypt");
-        list2.add("Poland");
+        addItems(list2);
 
         printList(list2);
 
         System.out.println();
         printList(list, "au");
+
+        File alice = new File("/home/laptop/Documents/alice.txt");
+        Set<String> hashSet = new HashSet<>();
+        Set<String> hashSet2 = new TreeSet<>();
+        List<String> arrayList = new ArrayList<>();
+        List<String> linkedList = new LinkedList<>();
+        Map<String, Integer> counter = new TreeMap<>();
+        try {
+            Scanner myReader = new Scanner(alice);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+//                System.out.println(data);
+                String[] words = data.split(" ");
+                for (String word: words) {
+                    String processed = word.toLowerCase()
+                            .replace("\"", "")
+                            .replace(";", "")
+                            .replace(":", "")
+                            .replace("!", "")
+                            .replace("@", "")
+                            .replace("#", "")
+                            .replace("$", "")
+                            .replace("%", "")
+                            .replace(",", "")
+                            .replace("(", "")
+                            .replace(")", "")
+                            .replace("[", "")
+                            .replace("]", "")
+                            .replace("“", "")
+                            .replace("_", "");
+                    if (counter.containsKey(processed)) {
+                       Integer count = counter.get(processed);
+                       counter.replace(processed, count + 1);
+                    } else {
+                        counter.put(processed, 1);
+                    }
+                    System.out.println(word);
+                    hashSet.add(word);
+                    arrayList.add(word);
+                    linkedList.add(word);
+                    hashSet2.add(word);
+                }
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Finsh");
     }
 }

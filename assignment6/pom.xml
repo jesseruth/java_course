@@ -137,6 +137,7 @@
         <configuration>
           <excludes>
             <exclude>**/cp510/d_list/*</exclude>
+            <exclude>**/app/*</exclude>
           </excludes>
         </configuration>
         <executions>
