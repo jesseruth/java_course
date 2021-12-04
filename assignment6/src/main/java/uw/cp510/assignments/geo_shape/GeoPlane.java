@@ -23,6 +23,14 @@ public class GeoPlane {
     }
 
     /**
+     * Number of shapes in plane.
+     * @return count
+     */
+    public int getSize() {
+        return dNodes.size();
+    }
+
+    /**
      * Redraw the list.
      */
     public void redraw() {
@@ -54,11 +62,12 @@ public class GeoPlane {
         DNode temp;
         temp = dNodes.getHead();
         while (temp != dNodes) {
-            if (temp.getData() != null) {
-                System.out.println("huh");
+            GeoShape thisShape = (GeoShape) temp.getData();
+            if (thisShape.equals(shape)) {
+                temp.remove();
                 return true;
             }
-            temp = dNodes.getNext();
+            temp = temp.getNext();
         }
         return false;
     }
