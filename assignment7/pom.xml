@@ -136,7 +136,7 @@
         <version>0.8.7</version>
         <configuration>
           <excludes>
-            <exclude>**/cp510/d_list/*</exclude>
+<!--            <exclude>**/cp510/d_list/*</exclude>-->
             <exclude>**/app/*</exclude>
           </excludes>
         </configuration>
