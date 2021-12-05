@@ -53,6 +53,15 @@ public class GeoRectangle extends GeoShape {
     }
 
 
+    public boolean equals( GeoShape other, double epsilon ) {
+        if (this == other) return true;
+        GeoRectangle geoRectangle = (GeoRectangle) other;
+        return (Math.abs(geoRectangle.getHeight() - getHeight()) < epsilon) &&
+                (Math.abs(geoRectangle.getWidth() - getWidth()) < epsilon) &&
+                geoRectangle.getOrigin().equals(this.getOrigin()) &&
+                geoRectangle.getColor().equals(this.getColor());
+    }
+
     /**
      * Rectangle height.
      *

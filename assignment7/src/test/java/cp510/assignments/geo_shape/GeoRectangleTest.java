@@ -8,10 +8,10 @@ import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class GeoRectangleTest {
-
+    private final double    epsilon = .0001;
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
@@ -100,5 +100,21 @@ class GeoRectangleTest {
         geoRectangle.setHeight(37.8902447);
         expectedPerimeter = 97.7804894;
         assertEquals(expectedPerimeter, geoRectangle.perimeter());
+    }
+
+    @Test
+    public void testEquality() {
+        GeoRectangle geoRectangle1 = new GeoRectangle(new GeoPoint(5.1, 3), Color.RED, 10, 20.3);
+        GeoRectangle geoRectangle2 = new GeoRectangle(new GeoPoint(2, 7), Color.BLUE, 40, 50);
+        assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
+        assertTrue(geoRectangle1.equals(geoRectangle1, epsilon));
+        assertTrue(geoRectangle2.equals(geoRectangle2, epsilon));
+
+        geoRectangle1.setHeight(geoRectangle2.getHeight());
+        geoRectangle1.setWidth(geoRectangle2.getWidth());
+        assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
+        geoRectangle1.setOrigin(geoRectangle2.getOrigin());
+        geoRectangle1.setColor(geoRectangle2.getColor());
+        assertTrue(geoRectangle1.equals(geoRectangle2, epsilon));
     }
 }

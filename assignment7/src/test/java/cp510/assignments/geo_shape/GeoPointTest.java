@@ -26,7 +26,6 @@ class GeoPointTest {
         GeoPoint geoPoint2 = new GeoPoint();
         assertTrue(geoPoint1.equals(geoPoint2, epsilon));
         assertFalse(geoPoint1.equals(null, epsilon));
-        assertFalse(geoPoint1.equals("HELLO", epsilon));
         geoPoint1.setXco(1);
         assertFalse(geoPoint1.equals(geoPoint2, epsilon));
         geoPoint2.setXco(1);

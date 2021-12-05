@@ -26,14 +26,11 @@ public class GeoPoint {
         this.yco = 0;
     }
 
-    public boolean equals(Object o, Double epsilon) {
-        if (this == o) return true;
-        if (!(o instanceof GeoPoint)) return false;
-
-        GeoPoint geoPoint = (GeoPoint) o;
-
-        return (Math.abs(geoPoint.getXco() - getXco()) < epsilon) &&
-                (Math.abs(geoPoint.getYco() - getYco()) < epsilon);
+    public boolean equals(GeoPoint other, Double epsilon) {
+        if (this == other) return true;
+        if( other == null) return false;
+        return (Math.abs(other.getXco() - getXco()) < epsilon) &&
+                (Math.abs(other.getYco() - getYco()) < epsilon);
     }
 
     /**
