@@ -106,14 +106,18 @@ class GeoRectangleTest {
     public void testEquality() {
         GeoRectangle geoRectangle1 = new GeoRectangle(new GeoPoint(5.1, 3), Color.RED, 10, 20.3);
         GeoRectangle geoRectangle2 = new GeoRectangle(new GeoPoint(2, 7), Color.BLUE, 40, 50);
+        // They don't equal each other
         assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
+        // They are equal to themselves
         assertTrue(geoRectangle1.equals(geoRectangle1, epsilon));
         assertTrue(geoRectangle2.equals(geoRectangle2, epsilon));
 
         geoRectangle1.setHeight(geoRectangle2.getHeight());
+        assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
         geoRectangle1.setWidth(geoRectangle2.getWidth());
         assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
         geoRectangle1.setOrigin(geoRectangle2.getOrigin());
+        assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
         geoRectangle1.setColor(geoRectangle2.getColor());
         assertTrue(geoRectangle1.equals(geoRectangle2, epsilon));
     }

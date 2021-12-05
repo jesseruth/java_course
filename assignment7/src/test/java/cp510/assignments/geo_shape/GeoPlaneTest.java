@@ -1,8 +1,5 @@
 package cp510.assignments.geo_shape;
 
-import cp510.assignments.geo_shape.GeoOval;
-import cp510.assignments.geo_shape.GeoPlane;
-import cp510.assignments.geo_shape.GeoRectangle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,7 +48,7 @@ class GeoPlaneTest {
         geoPlane.redraw();
         String actual = outputStreamCaptor.toString().trim();
         assertEquals("Drawing rectangle: origin=(.0000,.0000),color=null,width=.0000,height=.0000\n" +
-                "Drawing oval", actual);
+                "Drawing oval: origin=(.0000,.0000),color=null,width=.0000,height=.0000", actual);
     }
 
 }

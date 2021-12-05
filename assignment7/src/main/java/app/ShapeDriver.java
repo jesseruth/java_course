@@ -75,10 +75,10 @@ public class ShapeDriver
     private void
     newOval( double xco, double yco, Color color, double wid, double hei )
     {
-//        GeoPoint    origin  = new GeoPoint( xco, yco );
-//        GeoOval     oval    = new GeoOval( origin, color, wid, hei );
-//        plane.addShape( oval );
-//        System.out.println( "GeoOval: " + oval );
+        GeoPoint    origin  = new GeoPoint( xco, yco );
+        GeoOval     oval    = new GeoOval( origin, color, wid, hei );
+        plane.addShape( oval );
+        System.out.println( "GeoOval: " + oval );
     }
 
     /**
@@ -93,11 +93,11 @@ public class ShapeDriver
     private void
     newRect( double xco, double yco, Color color, double wid, double hei )
     {
-//        GeoPoint        origin  = new GeoPoint( xco, yco );
-//        GeoRectangle    rect    = new GeoRectangle( origin, color, wid, hei );
-//        plane.addShape( rect );
-//        System.out.println( "GeoRectangle: " + rect );
-//        System.out.printf(  "    area = %.04f\n", rect.area() );
-//        System.out.printf(  "    peri = %.04f\n", rect.perimeter() );
+        GeoPoint        origin  = new GeoPoint( xco, yco );
+        GeoRectangle    rect    = new GeoRectangle( origin, color, wid, hei );
+        plane.addShape( rect );
+        System.out.println( "GeoRectangle: " + rect );
+        System.out.printf(  "    area = %.04f\n", rect.area() );
+        System.out.printf(  "    peri = %.04f\n", rect.perimeter() );
     }
 }

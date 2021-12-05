@@ -20,6 +20,12 @@ public abstract class GeoShape {
      */
     private Color color = null;
 
+    /**
+     * Default constructor for all shapes.
+     * @param origin Origin of shape. Is required.
+     * @param color Color or shape. Can be null.
+     * @throws NullPointerException if origin is null
+     */
     public GeoShape( GeoPoint origin, Color color ) throws NullPointerException {
         if (origin == null) throw new NullPointerException();
         this.origin = origin;
@@ -46,7 +52,7 @@ public abstract class GeoShape {
      * Set the shape's origin.
      *
      * @param origin GeoPoint origin of shape.
-     * @throws NullPointerException
+     * @throws NullPointerException if origin is null.
      */
     public void setOrigin(GeoPoint origin) throws NullPointerException {
         if (origin == null) throw new NullPointerException();
