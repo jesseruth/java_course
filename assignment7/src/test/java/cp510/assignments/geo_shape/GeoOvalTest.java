@@ -1,5 +1,7 @@
-package uw.cp510.assignments.geo_shape;
+package cp510.assignments.geo_shape;
 
+import cp510.assignments.geo_shape.GeoOval;
+import cp510.assignments.geo_shape.GeoPoint;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +30,8 @@ class GeoOvalTest {
     void draw() {
 
         Color black = Color.black;
-        GeoOval geoOval = new GeoOval();
+        GeoPoint geoPoint = new GeoPoint();
+        GeoOval geoOval = new GeoOval(geoPoint, null);
         geoOval.setColor(black);
         geoOval.setHeight(2.2);
         geoOval.setWidth(1.1);

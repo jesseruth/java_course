@@ -1,4 +1,4 @@
-package uw.cp510.assignments.geo_shape;
+package cp510.assignments.geo_shape;
 
 
 import java.awt.*;
@@ -9,6 +9,10 @@ import java.awt.*;
  * @author Jesse Ruth
  */
 public class GeoOval extends GeoRectangle {
+
+    public GeoOval(GeoPoint origin, Color color) throws NullPointerException {
+        super(origin, color);
+    }
 
     /**
      * Draw an oval.

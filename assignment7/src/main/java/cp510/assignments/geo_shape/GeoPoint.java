@@ -1,4 +1,6 @@
-package uw.cp510.assignments.geo_shape;
+package cp510.assignments.geo_shape;
+
+import java.text.DecimalFormat;
 
 /**
  * A point that consists of an x-coordinate and a y-coordinate represented as xco and yco
@@ -20,6 +22,18 @@ public class GeoPoint {
      * Create a new GeoPoint.
      */
     public GeoPoint() {
+        this.xco = 0;
+        this.yco = 0;
+    }
+
+    public boolean equals(Object o, Double epsilon) {
+        if (this == o) return true;
+        if (!(o instanceof GeoPoint)) return false;
+
+        GeoPoint geoPoint = (GeoPoint) o;
+
+        return (Math.abs(geoPoint.getXco() - getXco()) < epsilon) &&
+                (Math.abs(geoPoint.getYco() - getYco()) < epsilon);
     }
 
     /**
@@ -67,5 +81,14 @@ public class GeoPoint {
      */
     public void setYco(double yco) {
         this.yco = yco;
+    }
+
+    /**
+     * (xco,yco)
+     * @return string
+     */
+    public String toString() {
+        DecimalFormat formatter = new DecimalFormat("#.0000");
+        return String.format("(%s,%s)" , formatter.format(getXco()), formatter.format(getYco()));
     }
 }

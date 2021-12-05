@@ -1,4 +1,4 @@
-package uw.cp510.assignments.geo_shape;
+package cp510.assignments.geo_shape;
 
 import java.awt.*;
 
@@ -8,6 +8,9 @@ import java.awt.*;
  * @author Jesse Ruth
  */
 public abstract class GeoShape {
+    public static final GeoPoint DEFAULT_ORIGIN = new GeoPoint(0, 0);
+    public static final Color DEFAULT_COLOR = Color.BLUE;
+
     /**
      * Origin of the shape.
      */
@@ -16,6 +19,12 @@ public abstract class GeoShape {
      * Color of the shape.
      */
     private Color color = null;
+
+    public GeoShape( GeoPoint origin, Color color ) throws NullPointerException {
+        if (origin == null) throw new NullPointerException();
+        this.origin = origin;
+        this.color = color;
+    }
 
     /**
      * Draws a shape.
@@ -40,6 +49,7 @@ public abstract class GeoShape {
      * @throws NullPointerException
      */
     public void setOrigin(GeoPoint origin) throws NullPointerException {
+        if (origin == null) throw new NullPointerException();
         this.origin = origin;
     }
 
@@ -59,5 +69,21 @@ public abstract class GeoShape {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    /**
+     * origin=(xco,yco),color=#cccccc
+     * @return String
+     */
+    public String toString() {
+        String color;
+        if (this.getColor() == null) {
+            color = "null";
+        } else {
+            String hex = "#"+Integer.toHexString(this.getColor().getRGB()).substring(2);
+            color = hex;
+        }
+
+        return String.format("origin=%s,color=%s", this.getOrigin().toString(), color);
     }
 }

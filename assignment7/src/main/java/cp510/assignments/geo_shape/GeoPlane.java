@@ -1,4 +1,5 @@
-package uw.cp510.assignments.geo_shape;
+package cp510.assignments.geo_shape;
+
 
 import cp510.d_list.DList;
 import cp510.d_list.DNode;

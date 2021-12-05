@@ -1,5 +1,8 @@
-package uw.cp510.assignments.geo_shape;
+package cp510.assignments.geo_shape;
 
+import cp510.assignments.geo_shape.GeoOval;
+import cp510.assignments.geo_shape.GeoPlane;
+import cp510.assignments.geo_shape.GeoRectangle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,10 +28,11 @@ class GeoPlaneTest {
 
     @Test
     void redrawAdd() {
-        GeoRectangle geoRectangle = new GeoRectangle();
-        GeoOval geoOval = new GeoOval();
-        GeoOval geoOval2 = new GeoOval();
-        GeoOval geoOval3_not_in_list = new GeoOval();
+        GeoPoint geoPoint = new GeoPoint();
+        GeoRectangle geoRectangle = new GeoRectangle(geoPoint, null);
+        GeoOval geoOval = new GeoOval(geoPoint, null);
+        GeoOval geoOval2 = new GeoOval(geoPoint, null);
+        GeoOval geoOval3_not_in_list = new GeoOval(geoPoint, null);
 
         GeoPlane geoPlane = new GeoPlane();
         geoPlane.addShape(geoRectangle);
@@ -46,7 +50,7 @@ class GeoPlaneTest {
 
         geoPlane.redraw();
         String actual = outputStreamCaptor.toString().trim();
-        assertEquals("Drawing rectangle\n" +
+        assertEquals("Drawing rectangle: origin=(.0000,.0000),color=null,width=.0000,height=.0000\n" +
                 "Drawing oval", actual);
     }
 
