@@ -9,7 +9,6 @@ import cp510.assignments.geo_shape.GeoRectangle;
 
 /**
  * A simple program to exercise the geo_shape package.
- *
  */
 public class ShapeDriver
 {

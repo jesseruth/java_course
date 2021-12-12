@@ -16,6 +16,69 @@ public abstract class GeoShape {
      * Set to Blue.
      */
     public static final Color DEFAULT_COLOR = Color.BLUE;
+    /**
+     * Edge color defaults to blue
+     */
+    public static final Color DEFAULT_EDGE_COLOR = Color.BLUE;
+
+    /**
+     * Default edge width is 1.
+     */
+    public static final double DEFAULT_EDGE_WIDTH = 1;
+
+    /**
+     * The edge width.
+     */
+    private double edgeWidth;
+
+    /**
+     * The color of the edge.
+     */
+    private Color edgeColor;
+
+    /**
+     * Get the edge width.
+     * @return width
+     */
+    public double getEdgeWidth() {
+        return edgeWidth;
+    }
+
+    /**
+     * Set the edge width.
+     * @param edgeWidth
+     */
+    public void setEdgeWidth(double edgeWidth) {
+        this.edgeWidth = edgeWidth;
+    }
+
+    /**
+     * Get the edge color.
+     * @return edge color
+     */
+    public Color getEdgeColor() {
+        return edgeColor;
+    }
+
+    /**
+     * Set the edge color.
+     *
+     * @param edgeColor
+     */
+    public void setEdgeColor(Color edgeColor) {
+        this.edgeColor = edgeColor;
+    }
+
+    /**
+     * Set the edge properties.
+     * @param color Color of edge.
+     * @param width Width of edge.
+     * @return
+     */
+    public void setEdge( Color color, double width ) {
+        this.setEdgeColor(color);
+        this.setEdgeWidth(width);
+    }
 
     /**
      * Origin of the shape.
@@ -84,7 +147,8 @@ public abstract class GeoShape {
     }
 
     /**
-     * origin=(xco,yco),color=#cccccc
+     * A string describing this object.
+     * origin=(10.0200,10.0300),color=#ffff00,edgeColor=#ffff00,edgeWidth=2.1000
      * @return String
      */
     public String toString() {
@@ -95,7 +159,14 @@ public abstract class GeoShape {
             String hex = "#"+Integer.toHexString(this.getColor().getRGB()).substring(2);
             color = hex;
         }
+        String edgeColor;
+        if (this.getEdgeColor() == null) {
+            edgeColor = "null";
+        } else {
+            String hex = "#"+Integer.toHexString(this.getColor().getRGB()).substring(2);
+            edgeColor = hex;
+        }
 
-        return String.format("origin=%s,color=%s", this.getOrigin().toString(), color);
+        return String.format("origin=%s,color=%s,edgeColor=%s,edgeWidth=%s", this.getOrigin().toString(), color, edgeColor, this.getEdgeWidth());
     }
 }
