@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GeoPoint.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment7</a> &gt; <a href="index.source.html" class="el_package">cp510.assignments.geo_shape</a> &gt; <span class="el_source">GeoPoint.java</span></div><h1>GeoPoint.java</h1><pre class="source lang-java linenums">package cp510.assignments.geo_shape;
+
+import java.text.DecimalFormat;
+
+/**
+ * A point that consists of an x-coordinate and a y-coordinate represented as xco and yco
+ * respectively.
+ *
+ * @author Jesse Ruth
+ */
+public class GeoPoint {
+    /**
+     * x-coordinate
+     */
+    private double xco;
+    /**
+     * y-coordinate
+     */
+    private double yco;
+
+    /**
+     * Create a new GeoPoint.
+     */
+<span class="fc" id="L24">    public GeoPoint() {</span>
+<span class="fc" id="L25">        this.xco = 0;</span>
+<span class="fc" id="L26">        this.yco = 0;</span>
+<span class="fc" id="L27">    }</span>
+
+    public boolean equals(GeoPoint other, Double epsilon) {
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (this == other) return true;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if( other == null) return false;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        return (Math.abs(other.getXco() - getXco()) &lt; epsilon) &amp;&amp;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">                (Math.abs(other.getYco() - getYco()) &lt; epsilon);</span>
+    }
+
+    /**
+     * Create a new GeoPoint and provide x and y.
+     *
+     * @param xco x-coordinate
+     * @param yco y-coordinate
+     */
+<span class="fc" id="L42">    public GeoPoint(double xco, double yco) {</span>
+<span class="fc" id="L43">        this.xco = xco;</span>
+<span class="fc" id="L44">        this.yco = yco;</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Get the x-coordinate.
+     *
+     * @return x-coordinate
+     */
+    public double getXco() {
+<span class="fc" id="L53">        return xco;</span>
+    }
+
+    /**
+     * Set the x-coordinate.
+     *
+     * @param xco x-coordinate
+     */
+    public void setXco(double xco) {
+<span class="fc" id="L62">        this.xco = xco;</span>
+<span class="fc" id="L63">    }</span>
+
+    /**
+     * Get the y-coordinate.
+     *
+     * @return y-coordinate
+     */
+    public double getYco() {
+<span class="fc" id="L71">        return yco;</span>
+    }
+
+    /**
+     * Set the y-coordinate.
+     *
+     * @param yco y-coordinate
+     */
+    public void setYco(double yco) {
+<span class="fc" id="L80">        this.yco = yco;</span>
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * (xco,yco)
+     * @return string
+     */
+    public String toString() {
+<span class="fc" id="L88">        DecimalFormat formatter = new DecimalFormat(&quot;#.0000&quot;);</span>
+<span class="fc" id="L89">        return String.format(&quot;(%s,%s)&quot; , formatter.format(getXco()), formatter.format(getYco()));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

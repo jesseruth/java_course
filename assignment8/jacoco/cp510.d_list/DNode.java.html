@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DNode.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment7</a> &gt; <a href="index.source.html" class="el_package">cp510.d_list</a> &gt; <span class="el_source">DNode.java</span></div><h1>DNode.java</h1><pre class="source lang-java linenums">package cp510.d_list;
+
+/**
+ * Encapsulation of a node in a doubly-linked list.
+ * The state of a node includes three references:
+ * &lt;ul&gt;
+ * &lt;li&gt;A reference to the user data stored in the node.&lt;/li&gt;
+ * &lt;li&gt;A reference to the previous item in the list (if enqueued).&lt;/li&gt;
+ * &lt;li&gt;A reference to the next item in the list (if enqueued).&lt;/li&gt;
+ * &lt;/ul&gt;
+ * &lt;p&gt;
+ * Definitions:
+ * &lt;blockquote&gt;
+ * &lt;dl&gt;
+ * &lt;dt&gt;Enqueued node&lt;/dt&gt;
+ * &lt;dd&gt;A node is &lt;em&gt;enqueued&lt;/em&gt; if its flink and blink point other items.
+ * &lt;/dd&gt;
+ * &lt;dt&gt;Unenqueued node&lt;/dt&gt;
+ * &lt;dd&gt;A node is &lt;em&gt;unenqueued&lt;/em&gt; if its flink and blink point to itself.
+ * &lt;/dd&gt;
+ * &lt;/dl&gt;
+ * &lt;/blockquote&gt;
+ *
+ */
+public class DNode
+{
+    /** Forward link; reference to next item */
+    private DNode   flink;
+
+    /** Backward link; reference to previous item */
+    private DNode   blink;
+
+    /** Data stored in this item */
+    private Object  data;
+
+    /**
+     * Default constructor.
+     * The node is constructed in the unenqueued state.
+     */
+    public DNode()
+    {
+<span class="fc" id="L42">        this( null );</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * Constructs a new node with the given data.
+     * The node is constructed in the unenqueued state.
+     * @param data The given data.
+     */
+    public DNode( Object data )
+<span class="fc" id="L51">    {</span>
+<span class="fc" id="L52">        flink = this;</span>
+<span class="fc" id="L53">        blink = this;</span>
+<span class="fc" id="L54">        this.data = data;</span>
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * Returns the next node. If the node is unenqueued the
+     * node itself is returned. If the node is at the tail of a DList,
+     * a reference to the DList is returned.
+     * &lt;p&gt;
+     * Sample usage:
+     * &lt;blockquote&gt;
+     * &lt;pre&gt;{@code
+     * DNode next = list.getHead();
+     * while ( next != list )
+     * {
+     *     System.out.println( next.getData() );
+     *     next = node.getNext();
+     * }
+     * }&lt;/pre&gt;
+     * &lt;/blockquote&gt;
+     *
+     * @return The next node in the list, or itself if unenqueued.
+     */
+    public DNode getNext()
+    {
+<span class="fc" id="L78">        return flink;</span>
+    }
+
+
+    /**
+     * Returns the previous node. If the node is unenqueued the
+     * node itself is returned. If the node is at the head of a DList,
+     * a reference to the DList is returned.
+     * &lt;p&gt;
+     * Sample usage:
+     * &lt;blockquote&gt;
+     * &lt;pre&gt;{@code
+     * DNode next = list.getTail();
+     * while ( next != list )
+     * {
+     *     System.out.println( next.getData() );
+     *     next = node.getPrevious();
+     * }
+     * }&lt;/pre&gt;
+     * &lt;/blockquote&gt;
+     *
+     * @return The previous node in the list, or itself if unenqueued.
+     */
+    public DNode getPrevious()
+    {
+<span class="fc" id="L103">        return blink;</span>
+    }
+
+    /**
+     * Adds a new node after this one. The new node must be in the
+     * unenqueued state; if it is not, an exception will be thrown.
+     *
+     * @param node  The node to add.
+     *
+     * @throws IllegalArgumentException if &lt;em&gt;node&lt;/em&gt; is in the
+     *         enqueued state.
+     */
+    public void addAfter( DNode node ) throws IllegalArgumentException
+    {
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        if ( node.isEnqueued() )</span>
+        {
+<span class="fc" id="L119">            String  msg = &quot;Attempt to enqueue already enqueued node: &quot; + node;</span>
+<span class="fc" id="L120">            throw new IllegalArgumentException( msg );</span>
+        }
+<span class="fc" id="L122">        node.flink = flink;</span>
+<span class="fc" id="L123">        node.blink = this;</span>
+<span class="fc" id="L124">        node.flink.blink = node;</span>
+<span class="fc" id="L125">        flink = node;</span>
+<span class="fc" id="L126">    }</span>
+
+    /**
+     * Adds a new node before this one. The new node must be in the
+     * unenqueued state; if it is not, an exception will be thrown.
+     *
+     * @param node  The node to add.
+     *
+     * @throws IllegalArgumentException if &lt;em&gt;node&lt;/em&gt; is in the
+     *         enqueued state.
+     */
+    public void addBefore( DNode node ) throws IllegalArgumentException
+    {
+<span class="fc" id="L139">        blink.addAfter( node );</span>
+<span class="fc" id="L140">    }</span>
+
+    /**
+     * Removes this node from the list it belongs to. If this node does
+     * not belong to a list, no action is taken. This node is returned.
+     *
+     * @return This node.
+     */
+    public DNode remove()
+    {
+<span class="fc" id="L150">        blink.flink = flink;</span>
+<span class="fc" id="L151">        flink.blink = blink;</span>
+<span class="fc" id="L152">        flink = this;</span>
+<span class="fc" id="L153">        blink = this;</span>
+
+<span class="fc" id="L155">        return this;</span>
+    }
+
+    /**
+     * The user data stored in this node.
+     * @return The user data stored in this node.
+     */
+    public Object getData()
+    {
+<span class="fc" id="L164">        return data;</span>
+    }
+
+    /**
+     * Sets the user data in this node.
+     * @param data The user data.
+     */
+    public void setData( Object data )
+    {
+<span class="fc" id="L173">        this.data = data;</span>
+<span class="fc" id="L174">    }</span>
+
+    /**
+     * Returns true if this node is enqueued.
+     *
+     * @return True if this node is enqueued, false otherwise.
+     */
+    public boolean isEnqueued()
+    {
+<span class="fc bfc" id="L183" title="All 2 branches covered.">        return this != this.flink;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
