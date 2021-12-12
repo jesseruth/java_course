@@ -88,4 +88,14 @@ public class GeoPoint {
         DecimalFormat formatter = new DecimalFormat("#.0000");
         return String.format("(%s,%s)" , formatter.format(getXco()), formatter.format(getYco()));
     }
+
+    /**
+     * Calculate the distance between 2 points.
+     * @param other point
+     * @return distance between 2 points.
+     */
+    public double distance(GeoPoint other) {
+        Double distance = Math.pow((other.getXco() - this.getXco()), 2) +  Math.pow((other.getYco() - this.getYco()), 2);
+        return Math.sqrt(distance);
+    }
 }

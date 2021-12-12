@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cp510.assignments.assignment7</groupId>
-  <artifactId>assignment7</artifactId>
-  <version>7</version>
+  <groupId>cp510.assignments.assignment8</groupId>
+  <artifactId>assignment8</artifactId>
+  <version>8</version>
 
-  <name>assignment7</name>
+  <name>assignment8</name>
 
   <properties>
     <student>RuthJ</student>
@@ -136,7 +136,6 @@
         <version>0.8.7</version>
         <configuration>
           <excludes>
-<!--            <exclude>**/cp510/d_list/*</exclude>-->
             <exclude>**/app/*</exclude>
           </excludes>
         </configuration>
