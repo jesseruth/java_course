@@ -1,7 +1,5 @@
 package cp510.assignments.geo_shape;
 
-import java.text.DecimalFormat;
-
 /**
  * A point that consists of an x-coordinate and a y-coordinate represented as xco and yco
  * respectively.
@@ -85,8 +83,7 @@ public class GeoPoint {
      * @return string
      */
     public String toString() {
-        DecimalFormat formatter = new DecimalFormat("#.0000");
-        return String.format("(%s,%s)" , formatter.format(getXco()), formatter.format(getYco()));
+        return String.format("(%.4f,%.4f)" , getXco(), getYco());
     }
 
     /**

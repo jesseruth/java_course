@@ -10,6 +10,11 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test the shape class GeoOval.
+ *
+ * @author Jesse RUth
+ */
 class GeoOvalTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -37,7 +42,8 @@ class GeoOvalTest {
 
         geoOval.draw(null);
         String actual = outputStreamCaptor.toString().trim();
-        assertEquals("Drawing oval: origin=(1.0000,2.0000),color=#000000,width=1.1000,height=2.2000", actual);
+        String expected = "Drawing oval: origin=(1.0000,2.0000),color=#000000,edgeColor=#0000ff,edgeWidth=1.0000,width=1.1000,height=2.2000";
+        assertEquals(expected, actual);
 
         assertEquals(1, geoOval.getOrigin().getXco());
         assertEquals(2, geoOval.getOrigin().getYco());

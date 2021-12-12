@@ -2,6 +2,7 @@ package app;
 
 import java.awt.Color;
 
+import cp510.assignments.geo_shape.GeoLine;
 import cp510.assignments.geo_shape.GeoPlane;
 import cp510.assignments.geo_shape.GeoPoint;
 import cp510.assignments.geo_shape.GeoRectangle;
@@ -35,6 +36,8 @@ public class GeoPlaneDemo
         rect = new GeoRectangle( origin, Color.YELLOW, 200, 200 );
         plane.addShape( rect );
 
+        GeoLine geoLine = new GeoLine(origin,Color.RED ,new GeoPoint( 0, 0 ), 10.0);
+        plane.addShape(geoLine);
         // Don't forget to redraw
         plane.redraw();
 

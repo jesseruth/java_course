@@ -1,6 +1,7 @@
 package cp510.assignments.geo_shape;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.text.DecimalFormat;
 
 /**
@@ -88,6 +89,8 @@ public class GeoRectangle extends GeoShape {
         GeoRectangle geoRectangle = (GeoRectangle) other;
         return (Math.abs(geoRectangle.getHeight() - getHeight()) < epsilon) &&
                 (Math.abs(geoRectangle.getWidth() - getWidth()) < epsilon) &&
+                (Math.abs(geoRectangle.getEdgeWidth() - getEdgeWidth()) < epsilon) &&
+                geoRectangle.getEdgeColor().equals(this.getEdgeColor()) &&
                 geoRectangle.getOrigin().equals(this.getOrigin()) &&
                 geoRectangle.getColor().equals(this.getColor());
     }
@@ -128,6 +131,10 @@ public class GeoRectangle extends GeoShape {
         this.width = width;
     }
 
+    /**
+     * String representation.
+     * @return Rectangle string.
+     */
     @Override
     public String toString() {
         DecimalFormat formatter = new DecimalFormat("#.0000");
@@ -141,6 +148,22 @@ public class GeoRectangle extends GeoShape {
      */
     @Override
     public void draw(Graphics2D gtx) {
+        Rectangle2D.Double rectangle = new Rectangle2D.Double(
+            getOrigin().getXco(),
+                getOrigin().getYco(),
+                getWidth(),
+                getHeight()
+        );
+        if (getColor() != null) {
+            gtx.setColor(getColor());
+            gtx.fill(rectangle);
+        }
+        if (getEdgeColor() != null && getEdgeWidth() > 0) {
+            BasicStroke stroke = new BasicStroke((float) getEdgeWidth());
+            gtx.setStroke(stroke);
+            gtx.setColor(getEdgeColor());
+        }
+        gtx.draw(rectangle);
         System.out.println("Drawing rectangle: " + this.toString());
     }
 }

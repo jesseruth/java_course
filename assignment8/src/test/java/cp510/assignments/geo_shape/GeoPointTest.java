@@ -63,7 +63,7 @@ class GeoPointTest {
         assertEquals(expected, geoPoint1.toString());
         geoPoint1.setXco(454.22234234234234);
         geoPoint1.setYco(.11122234234234234);
-        expected = "(454.2223,.1112)";
+        expected = "(454.2223,0.1112)";
         assertEquals(expected, geoPoint1.toString());
     }
 
@@ -75,7 +75,7 @@ class GeoPointTest {
         GeoPoint geoPoint1 = new GeoPoint();
         assertEquals(0, geoPoint1.getXco());
         assertEquals(0, geoPoint1.getYco());
-        assertEquals("(.0000,.0000)", geoPoint1.toString());
+        assertEquals("(0.0000,0.0000)", geoPoint1.toString());
     }
 
     /**

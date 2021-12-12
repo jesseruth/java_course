@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test GeoShape by implementing an inner class ShapeTester.
+ *
+ * @author Jesse Ruth
  */
 class GeoShapeTest {
     /**
@@ -19,17 +21,17 @@ class GeoShapeTest {
         // Create GeoShape with no color, defaults to null
         GeoPoint geoPoint = new GeoPoint();
         ShapeTester shapeTester = new ShapeTester(geoPoint, null);
-        String expected = "origin=(.0000,.0000),color=null";
+        String expected = "origin=(0.0000,0.0000),color=null,edgeColor=#0000ff,edgeWidth=1.0000";
         assertEquals(expected, shapeTester.toString());
 
         // Update color to black
         shapeTester.setColor(Color.black);
-        expected = "origin=(.0000,.0000),color=#000000";
+        expected = "origin=(0.0000,0.0000),color=#000000,edgeColor=#0000ff,edgeWidth=1.0000";
         assertEquals(expected, shapeTester.toString());
 
         // Update color to gray
         shapeTester.setColor(Color.LIGHT_GRAY);
-        expected = "origin=(.0000,.0000),color=#c0c0c0";
+        expected = "origin=(0.0000,0.0000),color=#c0c0c0,edgeColor=#0000ff,edgeWidth=1.0000";
         assertEquals(expected, shapeTester.toString());
     }
 
@@ -57,7 +59,7 @@ class GeoShapeTest {
         } catch (NullPointerException e) {
             assertEquals("java.lang.NullPointerException", e.toString());
         }
-        assertEquals("(.0000,.0000)", shapeTester.getOrigin().toString());
+        assertEquals("(0.0000,0.0000)", shapeTester.getOrigin().toString());
     }
 
     /**

@@ -1,6 +1,7 @@
 package cp510.assignments.geo_shape;
 
 import java.awt.*;
+import java.awt.geom.Line2D;
 
 /**
  * GeoLine instance class encapsulates a line. It inherits edgeWidth and edgeColor
@@ -93,7 +94,7 @@ public class GeoLine extends GeoShape {
      * @return Slope
      */
     public double slope() {
-        return (getStart().getYco() - getEnd().getYco()) / (getStart().getXco() - getEnd().getXco());
+        return (getEnd().getYco() - getStart().getYco()) / (getEnd().getXco() - getStart().getXco());
     }
 
     /**
@@ -103,7 +104,18 @@ public class GeoLine extends GeoShape {
      */
     @Override
     public void draw(Graphics2D gtx) {
-
+        Line2D.Double newLine = new Line2D.Double(
+                getOrigin().getXco(),
+                getOrigin().getYco(),
+                getEnd().getXco(),
+                getEnd().getYco()
+        );
+        if (getEdgeColor() != null && getEdgeWidth() > 0) {
+            BasicStroke basicStroke = new BasicStroke((float) getEdgeWidth());
+            gtx.setStroke(basicStroke);
+            gtx.setColor(getEdgeColor());
+        }
+        gtx.draw(newLine);
     }
 
     /**
