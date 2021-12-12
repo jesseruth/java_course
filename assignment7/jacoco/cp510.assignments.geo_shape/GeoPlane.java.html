@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GeoPlane.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment7</a> &gt; <a href="index.source.html" class="el_package">cp510.assignments.geo_shape</a> &gt; <span class="el_source">GeoPlane.java</span></div><h1>GeoPlane.java</h1><pre class="source lang-java linenums">package cp510.assignments.geo_shape;
+
+
+import cp510.d_list.DList;
+import cp510.d_list.DNode;
+
+/**
+ * This is a simple class that contains an instance variable of type DList. The DList will maintain
+ * a collection of DNodes; the data stored in a DNode will always be type GeoShape. It has the
+ * following methods:
+ *
+ * @author Jesse Ruth
+ */
+public class GeoPlane {
+    /**
+     * List of nodes.
+     */
+<span class="fc" id="L18">    private DList dNodes = new DList();</span>
+
+    /**
+     * Create a new GeoPlane object.
+     */
+<span class="fc" id="L23">    public GeoPlane() {</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Number of shapes in plane.
+     * @return count
+     */
+    public int getSize() {
+<span class="fc" id="L31">        return dNodes.size();</span>
+    }
+
+    /**
+     * Redraw the list.
+     */
+    public void redraw() {
+        DNode temp;
+<span class="fc" id="L39">        temp = dNodes.getHead();</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        while (temp != dNodes) {</span>
+<span class="fc" id="L41">            GeoShape shape = (GeoShape) temp.getData();</span>
+<span class="fc" id="L42">            shape.draw(null);</span>
+<span class="fc" id="L43">            temp = temp.getNext();</span>
+<span class="fc" id="L44">        }</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Add a shape to the list.
+     *
+     * @param shape GeoShape
+     */
+    public void addShape(GeoShape shape) {
+<span class="fc" id="L53">        dNodes.addTail(new DNode(shape));</span>
+<span class="fc" id="L54">    }</span>
+
+    /**
+     * Remove specific shape from list.
+     *
+     * @param shape GeoShape
+     * @return boolean
+     */
+    public boolean removeShape(GeoShape shape) {
+        DNode temp;
+<span class="fc" id="L64">        temp = dNodes.getHead();</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        while (temp != dNodes) {</span>
+<span class="fc" id="L66">            GeoShape thisShape = (GeoShape) temp.getData();</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            if (thisShape.equals(shape)) {</span>
+<span class="fc" id="L68">                temp.remove();</span>
+<span class="fc" id="L69">                return true;</span>
+            }
+<span class="fc" id="L71">            temp = temp.getNext();</span>
+<span class="fc" id="L72">        }</span>
+<span class="fc" id="L73">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

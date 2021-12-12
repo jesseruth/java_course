@@ -8,7 +8,13 @@ import java.awt.*;
  * @author Jesse Ruth
  */
 public abstract class GeoShape {
+    /**
+     * Set to 0,0.
+     */
     public static final GeoPoint DEFAULT_ORIGIN = new GeoPoint(0, 0);
+    /**
+     * Set to Blue.
+     */
     public static final Color DEFAULT_COLOR = Color.BLUE;
 
     /**

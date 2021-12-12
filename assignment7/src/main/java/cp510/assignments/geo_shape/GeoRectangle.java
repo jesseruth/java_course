@@ -18,18 +18,48 @@ public class GeoRectangle extends GeoShape {
      */
     private double width;
 
+    /**
+     * Create a rectangle.
+     * Throws NullPointerException if origin is null.
+     * @param origin
+     * @param color
+     * @throws NullPointerException
+     */
     public GeoRectangle(GeoPoint origin, Color color) throws NullPointerException {
         super(origin, color);
     }
 
+    /**
+     * Create a rectangle.
+     * Throws NullPointerException if origin is null.
+     * @param width
+     * @param height
+     */
     public GeoRectangle( double width, double height ) {
         this(DEFAULT_ORIGIN, DEFAULT_COLOR, width, height);
     }
 
+    /**
+     * Create a rectangle.
+     * Throws NullPointerException if origin is null.
+     * @param origin
+     * @param width
+     * @param height
+     * @throws NullPointerException
+     */
     public GeoRectangle( GeoPoint origin, double width, double height ) throws NullPointerException {
         this(origin, DEFAULT_COLOR, width, height);
     }
 
+    /**
+     * Create a rectangle.
+     * Throws NullPointerException if origin is null.
+     * @param origin
+     * @param color
+     * @param width
+     * @param height
+     * @throws NullPointerException
+     */
     public GeoRectangle( GeoPoint origin, Color color, double width, double height ) throws NullPointerException {
         this(origin, color);
         this.width = width;
