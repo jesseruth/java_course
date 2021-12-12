@@ -1,6 +1,7 @@
 package cp510.assignments.geo_shape;
 
 import java.awt.*;
+import java.text.DecimalFormat;
 
 /**
  * Abstract class for all shapes.
@@ -29,12 +30,12 @@ public abstract class GeoShape {
     /**
      * The edge width.
      */
-    private double edgeWidth;
+    private double edgeWidth =  DEFAULT_EDGE_WIDTH;
 
     /**
      * The color of the edge.
      */
-    private Color edgeColor;
+    private Color edgeColor = DEFAULT_EDGE_COLOR;
 
     /**
      * Get the edge width.
@@ -163,10 +164,11 @@ public abstract class GeoShape {
         if (this.getEdgeColor() == null) {
             edgeColor = "null";
         } else {
-            String hex = "#"+Integer.toHexString(this.getColor().getRGB()).substring(2);
+            String hex = "#"+Integer.toHexString(this.getEdgeColor().getRGB()).substring(2);
             edgeColor = hex;
         }
+        DecimalFormat formatter = new DecimalFormat("#.0000");
 
-        return String.format("origin=%s,color=%s,edgeColor=%s,edgeWidth=%s", this.getOrigin().toString(), color, edgeColor, this.getEdgeWidth());
+        return String.format("origin=%s,color=%s,edgeColor=%s,edgeWidth=%s", this.getOrigin().toString(), color, edgeColor, formatter.format(this.getEdgeWidth()));
     }
 }
