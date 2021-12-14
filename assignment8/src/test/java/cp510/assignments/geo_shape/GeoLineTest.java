@@ -70,4 +70,36 @@ public class GeoLineTest {
         assertEquals(expected, length);
     }
 
+    /**
+     * Validate string functions works
+     */
+    @Test
+    public void testToStringFunction() {
+        GeoPoint start = new GeoPoint(12,10);
+        GeoPoint end = new GeoPoint(23,2);
+        GeoLine geoLine1 = new GeoLine(start, end);
+        String expected = "origin=(12.0000,10.0000),color=null,edgeColor=#0000ff,edgeWidth=1.0000,end=(23.0000,2.0000)";
+        assertEquals(expected, geoLine1.toString());
+    }
+
+    /**
+     * Validate the slop
+     */
+    @Test
+    public void testSlope() {
+        GeoPoint start = new GeoPoint(0,0);
+        GeoPoint end = new GeoPoint(23,2);
+        GeoLine geoLine1 = new GeoLine(start, end);
+        Double expected = 0.08695652173913043;
+        assertEquals(expected, geoLine1.slope());
+
+        start.setXco(0);
+        start.setXco(0);
+        end.setXco(1);
+        end.setXco(1);
+        assertEquals(2.0, geoLine1.slope());
+
+        geoLine1.setOrigin(new GeoPoint(3,3));
+        assertEquals(0.5, geoLine1.slope());
+    }
 }

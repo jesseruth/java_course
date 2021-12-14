@@ -97,9 +97,9 @@ public class GeoRectangle extends GeoShape {
      */
     public boolean equals(GeoShape other, double epsilon) {
         GeoRectangle geoRectangle = (GeoRectangle) other;
-        return super.equals(other, epsilon) &&
-                equals(geoRectangle.getHeight(), getHeight(), epsilon) &&
-                equals(geoRectangle.getWidth(), getWidth(), epsilon);
+        if (!super.equals(other, epsilon)) return false;
+        return equals(geoRectangle.getHeight(), getHeight(), epsilon) &&
+               equals(geoRectangle.getWidth(), getWidth(), epsilon);
     }
 
     /**

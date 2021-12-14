@@ -188,9 +188,9 @@ public abstract class GeoShape {
     public boolean equals(GeoShape shape, double epsilon) {
         if (this == shape) return true;
         return  equals(shape.getEdgeWidth(),getEdgeWidth(), epsilon) &&
-                shape.getEdgeColor().equals(getEdgeColor()) &&
+                shape.getEdgeColor() == getEdgeColor() &&
                 shape.getOrigin().equals(getOrigin()) &&
-                shape.getColor().equals(getColor());
+                shape.getColor() == getColor();
     }
 
     /**

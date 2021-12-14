@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test GeoShape by implementing an inner class ShapeTester.
@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Jesse Ruth
  */
 class GeoShapeTest {
+    private final double    epsilon = .0001;
     /**
      * Test that GeoShape toString works with basic object construction.
      */
@@ -31,8 +32,38 @@ class GeoShapeTest {
 
         // Update color to gray
         shapeTester.setColor(Color.LIGHT_GRAY);
-        expected = "origin=(0.0000,0.0000),color=#c0c0c0,edgeColor=#0000ff,edgeWidth=1.0000";
+        shapeTester.setEdgeColor(null);
+        expected = "origin=(0.0000,0.0000),color=#c0c0c0,edgeColor=null,edgeWidth=1.0000";
         assertEquals(expected, shapeTester.toString());
+    }
+
+    @Test
+    public void testDoubleEquals() {
+        // Create GeoShape with no color, defaults to null
+        GeoPoint geoPoint = new GeoPoint();
+        ShapeTester shapeTester = new ShapeTester(geoPoint, null);
+
+        assertTrue(shapeTester.equals(1.0,1.0, epsilon));
+        assertTrue(shapeTester.equals(1.00000001,1.0, epsilon));
+    }
+
+    @Test
+    public void testEquality() {
+        // Create GeoShape with no color, defaults to null
+        GeoPoint geoPoint = new GeoPoint();
+        ShapeTester shapeTester1 = new ShapeTester(geoPoint, null);
+        ShapeTester shapeTester2 = new ShapeTester(geoPoint, null);
+        assertTrue(shapeTester1.equals(shapeTester1, epsilon));
+        assertTrue(shapeTester2.equals(shapeTester1, epsilon));
+
+        shapeTester2.setEdgeWidth(100.00);
+        assertFalse(shapeTester2.equals(shapeTester1, epsilon));
+
+        shapeTester2.setEdgeWidth(shapeTester1.getEdgeWidth());
+        assertTrue(shapeTester2.equals(shapeTester1, epsilon));
+
+        shapeTester2.setEdgeColor(Color.YELLOW);
+        assertFalse(shapeTester2.equals(shapeTester1, epsilon));
     }
 
     /**

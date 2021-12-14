@@ -19,9 +19,10 @@ public class GeoLine extends GeoShape {
     /**
      * Create a GeoLine by providing a start and end. Both required.
      * Width will be DEFAULT_EDGE_WIDTH and color will be DEFAULT_EDGE_COLOR.
+     *
      * @param start GeoPoint
-     * @param end GeoPoint
-     * @throws NullPointerException  When start or end is null.
+     * @param end   GeoPoint
+     * @throws NullPointerException When start or end is null.
      */
     public GeoLine(GeoPoint start, GeoPoint end) throws NullPointerException {
         this(start, DEFAULT_EDGE_COLOR, end, DEFAULT_EDGE_WIDTH);
@@ -31,9 +32,10 @@ public class GeoLine extends GeoShape {
      * Create a GeoLine by providing a start and end. Both required.
      * Color can be null.
      * Width will be DEFAULT_EDGE_WIDTH.
+     *
      * @param start GeoPoint
      * @param color Color
-     * @param end GeoPoint
+     * @param end   GeoPoint
      * @throws NullPointerException When start or end is null.
      */
     public GeoLine(GeoPoint start, Color color, GeoPoint end) throws NullPointerException {
@@ -43,11 +45,12 @@ public class GeoLine extends GeoShape {
     /**
      * Create a GeoLine by providing a start and end. Both required.
      * Color can be null.
+     *
      * @param start GeoPoint
      * @param color Color
-     * @param end GeoPoint
-     * @param width
-     * @throws NullPointerException  When start or end is null.
+     * @param end   GeoPoint
+     * @param width Line width
+     * @throws NullPointerException When start or end is null.
      */
     public GeoLine(GeoPoint start, Color color, GeoPoint end, double width) throws NullPointerException {
         super(start, null);
@@ -57,6 +60,7 @@ public class GeoLine extends GeoShape {
 
     /**
      * The end of the line.
+     *
      * @return GeoPoint end.
      */
     public GeoPoint getEnd() {
@@ -65,7 +69,8 @@ public class GeoLine extends GeoShape {
 
     /**
      * Update the end of the line. Throws NullPointerException.
-     * @param end
+     *
+     * @param end GeoPoint
      * @throws NullPointerException
      */
     public void setEnd(GeoPoint end) throws NullPointerException {
@@ -75,6 +80,7 @@ public class GeoLine extends GeoShape {
 
     /**
      * Get the start of the line, stored in origin of GeoShape.
+     *
      * @return
      */
     public GeoPoint getStart() {
@@ -82,7 +88,17 @@ public class GeoLine extends GeoShape {
     }
 
     /**
+     * Set start point.
+     * @param start GeoPoint
+     * @throws NullPointerException if GeoPoint is null
+     */
+    public void setStart(GeoPoint start) throws NullPointerException {
+        setOrigin(start);
+    }
+
+    /**
      * Length is the distance between the start and the end.
+     *
      * @return length.
      */
     public double length() {
@@ -91,6 +107,7 @@ public class GeoLine extends GeoShape {
 
     /**
      * Calculate the slope between the start and end points.
+     *
      * @return Slope
      */
     public double slope() {
@@ -120,10 +137,11 @@ public class GeoLine extends GeoShape {
 
     /**
      * origin=(5.5000,6.6000),color=null,edgeColor=#0000ff,edgeWidth=1.0000,end=(15.2000,31.6000)
+     *
      * @return String representation.
      */
     @Override
     public String toString() {
-        return super.toString() + getEnd().toString();
+        return super.toString() + ",end=" + getEnd().toString();
     }
 }
