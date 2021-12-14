@@ -5,19 +5,382 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphVector;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ImageObserver;
+import java.awt.image.RenderedImage;
+import java.awt.image.renderable.RenderableImage;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.text.AttributedCharacterIterator;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test the GeoRectangle class.
+ *
  * @author Jesse Ruth
  */
 class GeoRectangleTest {
-    private final double    epsilon = .0001;
+    private final double epsilon = .0001;
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private Graphics2D graphics2D = new Graphics2D() {
+        @Override
+        public void draw(Shape shape) {
+
+        }
+
+        @Override
+        public boolean drawImage(Image image, AffineTransform affineTransform, ImageObserver imageObserver) {
+            return false;
+        }
+
+        @Override
+        public void drawImage(BufferedImage bufferedImage, BufferedImageOp bufferedImageOp, int i, int i1) {
+
+        }
+
+        @Override
+        public void drawRenderedImage(RenderedImage renderedImage, AffineTransform affineTransform) {
+
+        }
+
+        @Override
+        public void drawRenderableImage(RenderableImage renderableImage, AffineTransform affineTransform) {
+
+        }
+
+        @Override
+        public void drawString(String s, int i, int i1) {
+
+        }
+
+        @Override
+        public void drawString(String s, float v, float v1) {
+
+        }
+
+        @Override
+        public void drawString(AttributedCharacterIterator attributedCharacterIterator, int i, int i1) {
+
+        }
+
+        @Override
+        public void drawString(AttributedCharacterIterator attributedCharacterIterator, float v, float v1) {
+
+        }
+
+        @Override
+        public void drawGlyphVector(GlyphVector glyphVector, float v, float v1) {
+
+        }
+
+        @Override
+        public void fill(Shape shape) {
+
+        }
+
+        @Override
+        public boolean hit(Rectangle rectangle, Shape shape, boolean b) {
+            return false;
+        }
+
+        @Override
+        public GraphicsConfiguration getDeviceConfiguration() {
+            return null;
+        }
+
+        @Override
+        public void setRenderingHint(RenderingHints.Key key, Object o) {
+
+        }
+
+        @Override
+        public Object getRenderingHint(RenderingHints.Key key) {
+            return null;
+        }
+
+        @Override
+        public void addRenderingHints(Map<?, ?> map) {
+
+        }
+
+        @Override
+        public RenderingHints getRenderingHints() {
+            return null;
+        }
+
+        @Override
+        public void setRenderingHints(Map<?, ?> map) {
+
+        }
+
+        @Override
+        public void translate(int i, int i1) {
+
+        }
+
+        @Override
+        public void translate(double v, double v1) {
+
+        }
+
+        @Override
+        public void rotate(double v) {
+
+        }
+
+        @Override
+        public void rotate(double v, double v1, double v2) {
+
+        }
+
+        @Override
+        public void scale(double v, double v1) {
+
+        }
+
+        @Override
+        public void shear(double v, double v1) {
+
+        }
+
+        @Override
+        public void transform(AffineTransform affineTransform) {
+
+        }
+
+        @Override
+        public AffineTransform getTransform() {
+            return null;
+        }
+
+        @Override
+        public void setTransform(AffineTransform affineTransform) {
+
+        }
+
+        @Override
+        public Paint getPaint() {
+            return null;
+        }
+
+        @Override
+        public void setPaint(Paint paint) {
+
+        }
+
+        @Override
+        public Composite getComposite() {
+            return null;
+        }
+
+        @Override
+        public void setComposite(Composite composite) {
+
+        }
+
+        @Override
+        public Color getBackground() {
+            return null;
+        }
+
+        @Override
+        public void setBackground(Color color) {
+
+        }
+
+        @Override
+        public Stroke getStroke() {
+            return null;
+        }
+
+        @Override
+        public void setStroke(Stroke stroke) {
+
+        }
+
+        @Override
+        public void clip(Shape shape) {
+
+        }
+
+        @Override
+        public FontRenderContext getFontRenderContext() {
+            return null;
+        }
+
+        @Override
+        public Graphics create() {
+            return null;
+        }
+
+        @Override
+        public Color getColor() {
+            return null;
+        }
+
+        @Override
+        public void setColor(Color color) {
+
+        }
+
+        @Override
+        public void setPaintMode() {
+
+        }
+
+        @Override
+        public void setXORMode(Color color) {
+
+        }
+
+        @Override
+        public Font getFont() {
+            return null;
+        }
+
+        @Override
+        public void setFont(Font font) {
+
+        }
+
+        @Override
+        public FontMetrics getFontMetrics(Font font) {
+            return null;
+        }
+
+        @Override
+        public Rectangle getClipBounds() {
+            return null;
+        }
+
+        @Override
+        public void clipRect(int i, int i1, int i2, int i3) {
+
+        }
+
+        @Override
+        public void setClip(int i, int i1, int i2, int i3) {
+
+        }
+
+        @Override
+        public Shape getClip() {
+            return null;
+        }
+
+        @Override
+        public void setClip(Shape shape) {
+
+        }
+
+        @Override
+        public void copyArea(int i, int i1, int i2, int i3, int i4, int i5) {
+
+        }
+
+        @Override
+        public void drawLine(int i, int i1, int i2, int i3) {
+
+        }
+
+        @Override
+        public void fillRect(int i, int i1, int i2, int i3) {
+
+        }
+
+        @Override
+        public void clearRect(int i, int i1, int i2, int i3) {
+
+        }
+
+        @Override
+        public void drawRoundRect(int i, int i1, int i2, int i3, int i4, int i5) {
+
+        }
+
+        @Override
+        public void fillRoundRect(int i, int i1, int i2, int i3, int i4, int i5) {
+
+        }
+
+        @Override
+        public void drawOval(int i, int i1, int i2, int i3) {
+
+        }
+
+        @Override
+        public void fillOval(int i, int i1, int i2, int i3) {
+
+        }
+
+        @Override
+        public void drawArc(int i, int i1, int i2, int i3, int i4, int i5) {
+
+        }
+
+        @Override
+        public void fillArc(int i, int i1, int i2, int i3, int i4, int i5) {
+
+        }
+
+        @Override
+        public void drawPolyline(int[] ints, int[] ints1, int i) {
+
+        }
+
+        @Override
+        public void drawPolygon(int[] ints, int[] ints1, int i) {
+
+        }
+
+        @Override
+        public void fillPolygon(int[] ints, int[] ints1, int i) {
+
+        }
+
+        @Override
+        public boolean drawImage(Image image, int i, int i1, ImageObserver imageObserver) {
+            return false;
+        }
+
+        @Override
+        public boolean drawImage(Image image, int i, int i1, int i2, int i3, ImageObserver imageObserver) {
+            return false;
+        }
+
+        @Override
+        public boolean drawImage(Image image, int i, int i1, Color color, ImageObserver imageObserver) {
+            return false;
+        }
+
+        @Override
+        public boolean drawImage(Image image, int i, int i1, int i2, int i3, Color color, ImageObserver imageObserver) {
+            return false;
+        }
+
+        @Override
+        public boolean drawImage(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, ImageObserver imageObserver) {
+            return false;
+        }
+
+        @Override
+        public boolean drawImage(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, Color color, ImageObserver imageObserver) {
+            return false;
+        }
+
+        @Override
+        public void dispose() {
+
+        }
+    };
+
 
     @BeforeEach
     public void setUp() {
@@ -40,13 +403,22 @@ class GeoRectangleTest {
         geoRectangle.setHeight(height);
         geoRectangle.setWidth(width);
         geoRectangle.setOrigin(new GeoPoint(1, 1));
-
-//        geoRectangle.draw(null);
-//        String actual = outputStreamCaptor.toString().trim();
-//        String expected = "Drawing rectangle: origin=(1.0000,1.0000),color=#000000,width=2.2000,height=1.2000";
-//        assertEquals(expected, actual);
+        geoRectangle.draw(graphics2D);
+        String actual = outputStreamCaptor.toString().trim();
+        String expected = "Drawing rectangle: origin=(1.0000,1.0000),color=#000000,edgeColor=#0000ff,edgeWidth=1.0000,width=2.2000,height=1.2000";
+        assertEquals(expected, actual);
         assertEquals(height, geoRectangle.getHeight());
         assertEquals(width, geoRectangle.getWidth());
+
+        geoRectangle.setColor(null);
+        geoRectangle.setEdgeColor(null);
+        geoRectangle.draw(graphics2D);
+
+        geoRectangle.setEdgeWidth(0);
+        geoRectangle.draw(graphics2D);
+
+        geoRectangle.setEdgeColor(Color.YELLOW);
+        geoRectangle.draw(graphics2D);
     }
 
     @Test
@@ -89,16 +461,17 @@ class GeoRectangleTest {
 
     @Test
     public void testArea() {
-        GeoRectangle geoRectangle = new GeoRectangle(11,1);
+        GeoRectangle geoRectangle = new GeoRectangle(11, 1);
         Double expectedArea = 11.0;
         assertEquals(expectedArea, geoRectangle.area());
         geoRectangle.setHeight(37.8902447);
         expectedArea = 416.7926917;
         assertEquals(expectedArea, geoRectangle.area());
     }
+
     @Test
     public void testPerimeter() {
-        GeoRectangle geoRectangle = new GeoRectangle(11,1);
+        GeoRectangle geoRectangle = new GeoRectangle(11, 1);
         Double expectedPerimeter = 24.0;
         assertEquals(expectedPerimeter, geoRectangle.perimeter());
         geoRectangle.setHeight(37.8902447);
@@ -124,5 +497,19 @@ class GeoRectangleTest {
         assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
         geoRectangle1.setColor(geoRectangle2.getColor());
         assertTrue(geoRectangle1.equals(geoRectangle2, epsilon));
+    }
+
+    @Test
+    public void simpleEqualityTest() {
+        GeoPoint geoPoint = new GeoPoint(5.1, 3);
+        GeoRectangle geoRectangle1 = new GeoRectangle(geoPoint, Color.RED, 10, 10);
+        GeoRectangle geoRectangle2 = new GeoRectangle(geoPoint, Color.RED, 10, 10);
+        assertTrue(geoRectangle1.equals(geoRectangle2, epsilon));
+
+        geoRectangle1.setWidth(20);
+        assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
+
+        geoRectangle1.setHeight(20);
+        assertFalse(geoRectangle1.equals(geoRectangle2, epsilon));
     }
 }
