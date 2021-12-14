@@ -30,15 +30,37 @@ public abstract class GeoShape {
     /**
      * The edge width.
      */
-    private double edgeWidth =  DEFAULT_EDGE_WIDTH;
+    private double edgeWidth = DEFAULT_EDGE_WIDTH;
 
     /**
      * The color of the edge.
      */
     private Color edgeColor = DEFAULT_EDGE_COLOR;
+    /**
+     * Origin of the shape.
+     */
+    private GeoPoint origin;
+    /**
+     * Color of the shape.
+     */
+    private Color color;
+
+    /**
+     * Default constructor for all shapes.
+     *
+     * @param origin Origin of shape. Is required.
+     * @param color  Color or shape. Can be null.
+     * @throws NullPointerException if origin is null
+     */
+    public GeoShape(GeoPoint origin, Color color) throws NullPointerException {
+        if (origin == null) throw new NullPointerException();
+        this.origin = origin;
+        this.color = color;
+    }
 
     /**
      * Get the edge width.
+     *
      * @return width
      */
     public double getEdgeWidth() {
@@ -47,6 +69,7 @@ public abstract class GeoShape {
 
     /**
      * Set the edge width.
+     *
      * @param edgeWidth
      */
     public void setEdgeWidth(double edgeWidth) {
@@ -55,6 +78,7 @@ public abstract class GeoShape {
 
     /**
      * Get the edge color.
+     *
      * @return edge color
      */
     public Color getEdgeColor() {
@@ -72,34 +96,14 @@ public abstract class GeoShape {
 
     /**
      * Set the edge properties.
+     *
      * @param color Color of edge.
      * @param width Width of edge.
      * @return
      */
-    public void setEdge( Color color, double width ) {
+    public void setEdge(Color color, double width) {
         this.setEdgeColor(color);
         this.setEdgeWidth(width);
-    }
-
-    /**
-     * Origin of the shape.
-     */
-    private GeoPoint origin = new GeoPoint(0, 0);
-    /**
-     * Color of the shape.
-     */
-    private Color color = null;
-
-    /**
-     * Default constructor for all shapes.
-     * @param origin Origin of shape. Is required.
-     * @param color Color or shape. Can be null.
-     * @throws NullPointerException if origin is null
-     */
-    public GeoShape( GeoPoint origin, Color color ) throws NullPointerException {
-        if (origin == null) throw new NullPointerException();
-        this.origin = origin;
-        this.color = color;
     }
 
     /**
@@ -150,6 +154,7 @@ public abstract class GeoShape {
     /**
      * A string describing this object.
      * origin=(10.0200,10.0300),color=#ffff00,edgeColor=#ffff00,edgeWidth=2.1000
+     *
      * @return String
      */
     public String toString() {
@@ -157,18 +162,48 @@ public abstract class GeoShape {
         if (this.getColor() == null) {
             color = "null";
         } else {
-            String hex = "#"+Integer.toHexString(this.getColor().getRGB()).substring(2);
+            String hex = "#" + Integer.toHexString(this.getColor().getRGB()).substring(2);
             color = hex;
         }
         String edgeColor;
         if (this.getEdgeColor() == null) {
             edgeColor = "null";
         } else {
-            String hex = "#"+Integer.toHexString(this.getEdgeColor().getRGB()).substring(2);
+            String hex = "#" + Integer.toHexString(this.getEdgeColor().getRGB()).substring(2);
             edgeColor = hex;
         }
-        DecimalFormat formatter = new DecimalFormat("#.0000");
 
-        return String.format("origin=%s,color=%s,edgeColor=%s,edgeWidth=%s", this.getOrigin().toString(), color, edgeColor, formatter.format(this.getEdgeWidth()));
+        return String.format("origin=%s,color=%s,edgeColor=%s,edgeWidth=%.4f", this.getOrigin().toString(), color, edgeColor, getEdgeWidth());
+    }
+
+    /**
+     * Returns true if this shape is equal to a given shape. The two shapes are equal if all of
+     * their properties are equal:
+     * origin, color, edgeColor, edgeWidth
+     *
+     * @param shape GeoShape
+     * @param epsilon Double tolerance
+     * @return boolean true id equal
+     */
+    public boolean equals(GeoShape shape, double epsilon) {
+        if (this == shape) return true;
+        return  equals(shape.getEdgeWidth(),getEdgeWidth(), epsilon) &&
+                shape.getEdgeColor().equals(getEdgeColor()) &&
+                shape.getOrigin().equals(getOrigin()) &&
+                shape.getColor().equals(getColor());
+    }
+
+    /**
+     * Returns true if two given double values are equal according to the epsilon test.
+     * This is mainly a convenience method for use by subclasses.
+     * @param num1  The first given value to compare.
+     * @param num2  The second given value to compare.
+     * @param epsilon  Value to use when comparing doubles.
+     * @return  True if the given values are equal according to the epsilon test.
+     */
+    public boolean equals(double num1, double num2, double epsilon) {
+        return (Math.abs(num1 - num2) < epsilon);
     }
 }
+
+

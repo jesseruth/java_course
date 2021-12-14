@@ -56,16 +56,16 @@ class GeoPlaneTest {
 
         geoPlane.addShape(geoRectangle);
         geoPlane.addShape(geoOval);
-        assertEquals(3, geoPlane.getSize());
+        assertEquals(3, geoPlane.getShapes().size());
 
         geoPlane.addShape(geoOval2);
-        assertEquals(4, geoPlane.getSize());
+        assertEquals(4, geoPlane.getShapes().size());
 
         Boolean isRemoved = geoPlane.removeShape(geoOval2);
         Boolean isRemoved2 = geoPlane.removeShape(geoOval3_not_in_list);
         assertEquals(true,isRemoved);
         assertEquals(false, isRemoved2);
-        assertEquals(3, geoPlane.getSize());
+        assertEquals(3, geoPlane.getShapes().size());
 
         geoPlane.redraw();
 //        String actual = outputStreamCaptor.toString().trim();

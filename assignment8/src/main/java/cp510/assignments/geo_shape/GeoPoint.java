@@ -24,6 +24,12 @@ public class GeoPoint {
         this.yco = 0;
     }
 
+    /**
+     * Checks to see if one GeoPoint is equal to another.
+     * @param other GeoPoint
+     * @param epsilon used in calculating.
+     * @return boolean
+     */
     public boolean equals(GeoPoint other, Double epsilon) {
         if (this == other) return true;
         if( other == null) return false;
@@ -79,6 +85,7 @@ public class GeoPoint {
     }
 
     /**
+     * GeoPoint to String.
      * (xco,yco)
      * @return string
      */

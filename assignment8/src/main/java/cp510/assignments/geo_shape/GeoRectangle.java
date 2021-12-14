@@ -2,7 +2,6 @@ package cp510.assignments.geo_shape;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.text.DecimalFormat;
 
 /**
  * GeoRectangle extend GeoShape and adds height and width properties.
@@ -22,6 +21,7 @@ public class GeoRectangle extends GeoShape {
     /**
      * Create a rectangle.
      * Throws NullPointerException if origin is null.
+     *
      * @param origin
      * @param color
      * @throws NullPointerException
@@ -33,35 +33,38 @@ public class GeoRectangle extends GeoShape {
     /**
      * Create a rectangle.
      * Throws NullPointerException if origin is null.
+     *
      * @param width
      * @param height
      */
-    public GeoRectangle( double width, double height ) {
+    public GeoRectangle(double width, double height) {
         this(DEFAULT_ORIGIN, DEFAULT_COLOR, width, height);
     }
 
     /**
      * Create a rectangle.
      * Throws NullPointerException if origin is null.
+     *
      * @param origin
      * @param width
      * @param height
      * @throws NullPointerException
      */
-    public GeoRectangle( GeoPoint origin, double width, double height ) throws NullPointerException {
+    public GeoRectangle(GeoPoint origin, double width, double height) throws NullPointerException {
         this(origin, DEFAULT_COLOR, width, height);
     }
 
     /**
      * Create a rectangle.
      * Throws NullPointerException if origin is null.
+     *
      * @param origin
      * @param color
      * @param width
      * @param height
      * @throws NullPointerException
      */
-    public GeoRectangle( GeoPoint origin, Color color, double width, double height ) throws NullPointerException {
+    public GeoRectangle(GeoPoint origin, Color color, double width, double height) throws NullPointerException {
         this(origin, color);
         this.width = width;
         this.height = height;
@@ -69,6 +72,7 @@ public class GeoRectangle extends GeoShape {
 
     /**
      * Returns the rectangle area.
+     *
      * @return Double area
      */
     public double area() {
@@ -77,6 +81,7 @@ public class GeoRectangle extends GeoShape {
 
     /**
      * Rectangle perimeter
+     *
      * @return Double perimeter
      */
     public double perimeter() {
@@ -84,15 +89,17 @@ public class GeoRectangle extends GeoShape {
     }
 
 
-    public boolean equals( GeoShape other, double epsilon ) {
-        if (this == other) return true;
+    /**
+     * Validates one GeoShape is a GeoRectangle.
+     * @param other GeoShape
+     * @param epsilon Double tolerance
+     * @return boolean
+     */
+    public boolean equals(GeoShape other, double epsilon) {
         GeoRectangle geoRectangle = (GeoRectangle) other;
-        return (Math.abs(geoRectangle.getHeight() - getHeight()) < epsilon) &&
-                (Math.abs(geoRectangle.getWidth() - getWidth()) < epsilon) &&
-                (Math.abs(geoRectangle.getEdgeWidth() - getEdgeWidth()) < epsilon) &&
-                geoRectangle.getEdgeColor().equals(this.getEdgeColor()) &&
-                geoRectangle.getOrigin().equals(this.getOrigin()) &&
-                geoRectangle.getColor().equals(this.getColor());
+        return super.equals(other, epsilon) &&
+                equals(geoRectangle.getHeight(), getHeight(), epsilon) &&
+                equals(geoRectangle.getWidth(), getWidth(), epsilon);
     }
 
     /**
@@ -133,12 +140,12 @@ public class GeoRectangle extends GeoShape {
 
     /**
      * String representation.
+     *
      * @return Rectangle string.
      */
     @Override
     public String toString() {
-        DecimalFormat formatter = new DecimalFormat("#.0000");
-        return String.format("%s,width=%s,height=%s",super.toString(), formatter.format(width), formatter.format(height));
+        return String.format("%s,width=%.4f,height=%.4f", super.toString(), width, height);
     }
 
     /**
@@ -149,7 +156,7 @@ public class GeoRectangle extends GeoShape {
     @Override
     public void draw(Graphics2D gtx) {
         Rectangle2D.Double rectangle = new Rectangle2D.Double(
-            getOrigin().getXco(),
+                getOrigin().getXco(),
                 getOrigin().getYco(),
                 getWidth(),
                 getHeight()

@@ -150,7 +150,12 @@ public class GeoPlane
                 shape.draw( gtx );
         }
     }
-    public int getSize() {
-        return allShapes.size();
+
+    /**
+     * Returns the list of shapes maintained by this GeoPlane.
+     * @return list of shapes maintained by this GeoPlane.
+     */
+    public List<GeoShape> getShapes(){
+        return allShapes;
     }
 }
