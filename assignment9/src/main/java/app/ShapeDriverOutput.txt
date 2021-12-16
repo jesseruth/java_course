@@ -1,0 +1,27 @@
+GeoOval: origin=(1.1000,2.2000),color=#ff0000,edgeColor=#0000ff,edgeWidth=1.0000,width=10.3000,height=20.7000
+GeoRectangle: origin=(3.3000,4.4000),color=#00ff00,edgeColor=#0000ff,edgeWidth=1.0000,width=10.3000,height=20.7000
+    area = 213.2100
+    peri = 62.0000
+GeoOval: origin=(5.5000,6.6000),color=#0000ff,edgeColor=#0000ff,edgeWidth=1.0000,width=15.2000,height=31.6000
+GeoRectangle: origin=(5.5000,6.6000),color=#0000ff,edgeColor=#0000ff,edgeWidth=1.0000,width=15.2000,height=31.6000
+    area = 480.3200
+    peri = 93.6000
+GeoOval: origin=(9.9000,10.0100),color=#00ffff,edgeColor=#0000ff,edgeWidth=1.0000,width=91.4000,height=50.2000
+GeoRectangle: origin=(9.9000,10.0100),color=#00ffff,edgeColor=#0000ff,edgeWidth=1.0000,width=91.4000,height=50.2000
+    area = 4588.2800
+    peri = 283.2000
+GeoRectangle: origin=(12.0200,13.0300),color=#000000,edgeColor=#0000ff,edgeWidth=1.0000,width=23.6000,height=17.9000
+    area = 422.4400
+    peri = 83.0000
+GeoRectangle: origin=(13.0200,14.0300),color=#ffffff,edgeColor=#0000ff,edgeWidth=1.0000,width=4.5000,height=6.2000
+    area = 27.9000
+    peri = 21.4000
+GeoOval: origin=(12.0200,13.0300),color=#000000,edgeColor=#0000ff,edgeWidth=1.0000,width=23.6000,height=17.9000
+GeoOval: origin=(13.0200,14.0300),color=#ffffff,edgeColor=#0000ff,edgeWidth=1.0000,width=4.5000,height=6.2000
+GeoPoint equality check:(5.0000,6.0000)/(5.0000,6.0000): true
+GeoPoint equality check:(5.0000,6.0000)/(5.0000,6.0000): true
+GeoPoint equality check:(5.0000,6.0000)/(5.0000,6.0000): true
+GeoPoint equality check:(5.0000,6.0000)/(1.0000,5.1112): false
+GeoPoint equality check:(5.0000,6.0000)/null: false
+GeoPoint equality check:(5.0000,6.0000)/(1.0000,5.1112): false
+GeoPoint equality check:(1.0000,5.1112)/(1.0000,5.1112): true
